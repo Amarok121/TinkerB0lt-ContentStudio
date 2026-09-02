@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "meta": {
+    "note": "Add fields to groups below for labeled editor UI. New CSV columns not listed here still appear under auto-matched or 'Additional columns' groups."
+  },
+  "id_ranges": {
+    "equipment": { "min": 1, "max": 999 },
+    "consumable": { "min": 1001, "max": 1999 },
+    "misc": { "min": 2000, "max": 2999 },
+    "quest": { "min": 3000, "max": 3999 }
+  },
+  "auto_groups": [
+    {
+      "id": "attribute_modifiers",
+      "label": "Attribute modifiers",
+      "column_pattern": "*_Amp",
+      "field_type": "float",
+      "hint": "Per-element or per-attribute amplification"
+    }
+  ],
+  "groups": [
+    {
+      "id": "identity",
+      "label": "Identity",
+      "fields": [
+        { "key": "ID", "label": "ID", "type": "id", "readonly": true },
+        { "key": "Name", "label": "Fallback name (EN)", "type": "string", "hint": "Used when localization key missing" },
+        { "key": "Type", "label": "Type", "type": "enum", "options": ["equipment", "consumable", "misc", "quest"] },
+        { "key": "Texture", "label": "Texture", "type": "path" },
+        { "key": "Stack_Amount", "label": "Stack amount", "type": "int" }
+      ]
+    },
+    {
+      "id": "localization",
+      "label": "Localization",
+      "fields": [
+        { "key": "_name_en", "label": "Display name (EN)", "type": "string", "loc_key": "NAME" },
+        { "key": "_name_ko", "label": "Display name (KO)", "type": "string", "loc_key": "NAME" },
+        { "key": "_desc_en", "label": "Description (EN)", "type": "textarea", "loc_key": "DESC" },
+        { "key": "_desc_ko", "label": "Description (KO)", "type": "textarea", "loc_key": "DESC" }
+      ]
+    },
+    {
+      "id": "equipment",
+      "label": "Equipment",
+      "fields": [
+        { "key": "Parts", "label": "Parts slot", "type": "string" },
+        { "key": "Switchable", "label": "Switchable", "type": "bool" },
+        { "key": "Owner", "label": "Owner", "type": "string" },
+        { "key": "Weapon_Type", "label": "Weapon type", "type": "string" }
+      ]
+    },
+    {
+      "id": "combat",
+      "label": "Combat stats",
+      "fields": [
+        { "key": "Attack_Power", "label": "Attack power", "type": "float" },
+        { "key": "Attack_Rate", "label": "Attack rate", "type": "float" },
+        { "key": "Base_Fortitude", "label": "Base fortitude", "type": "float" },
+        { "key": "Slash_Fortitude", "label": "Slash fortitude", "type": "float" },
+        { "key": "Pierce_Fortitude", "label": "Pierce fortitude", "type": "float" },
+        { "key": "Blunt_Fortitude", "label": "Blunt fortitude", "type": "float" }
+      ]
+    },
+    {
+      "id": "consumable",
+      "label": "Consumable effects",
+      "fields": [
+        { "key": "Healing_Amount", "label": "Healing", "type": "float" },
+        { "key": "Energy_Amount", "label": "Energy restore", "type": "float" },
+        { "key": "Energy_Consumption", "label": "Energy cost", "type": "float" },
+        { "key": "Heat_Adjustment", "label": "Heat adjustment", "type": "float" },
+        { "key": "is_Grenade", "label": "Throwable", "type": "bool" }
+      ]
+    },
+    {
+      "id": "attributes",
+      "label": "Attributes",
+      "fields": [
+        { "key": "Physical_Attribute", "label": "Physical", "type": "enum", "options": ["", "Slash", "Pierce", "Blunt"] },
+        { "key": "Elemental_Attribute", "label": "Elemental", "type": "enum", "options": ["", "Fire", "Elec", "Frost"] },
+        { "key": "is_Essential", "label": "Essential (key item)", "type": "bool" }
+      ]
+    },
+    {
+      "id": "economy",
+      "label": "Economy / drops",
+      "fields": [
+        { "key": "Cost", "label": "Cost", "type": "int" },
+        { "key": "Drop_Chance", "label": "Drop chance %", "type": "float" },
+        { "key": "Min_Amount", "label": "Min drop", "type": "int" },
+        { "key": "Max_Amount", "label": "Max drop", "type": "int" }
+      ]
+    },
+    {
+      "id": "stain",
+      "label": "Stain / ground effect",
+      "fields": [
+        { "key": "Create_Stain", "label": "Creates stain", "type": "bool" },
+        { "key": "Stain_Type", "label": "Stain type", "type": "enum", "options": ["", "WATER", "OIL", "COOLANT", "FIRE"] },
+        { "key": "Stain_Lifetime", "label": "Lifetime", "type": "float" },
+        { "key": "Stain_Radius", "label": "Radius", "type": "float" },
+        { "key": "Stain_Spawn_At_Player", "label": "Spawn at player", "type": "bool" },
+        { "key": "Stain_Scene", "label": "Stain scene", "type": "path" },
+        { "key": "Stain_Damage", "label": "Stain DPS", "type": "float" },
+        { "key": "Stain_Heat_Effect", "label": "Stain heat/sec", "type": "float" },
+        { "key": "Stain_Spread_Count", "label": "Spread count", "type": "int" },
+        { "key": "Stain_Spread_Radius", "label": "Spread radius", "type": "float" }
+      ]
+    }
+  ]
+}

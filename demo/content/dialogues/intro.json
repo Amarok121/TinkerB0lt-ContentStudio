@@ -1,0 +1,17 @@
+{
+  "dialogues": [
+    {
+      "id": "demo_greeting",
+      "steps": [
+        {
+          "type": "text",
+          "text": { "en": "System online...", "ko": "시스템 가동 중..." }
+        },
+        {
+          "type": "text",
+          "text": { "en": "Can you hear me?", "ko": "들리나요?" }
+        }
+      ]
+    }
+  ]
+}

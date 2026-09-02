@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-01-01T00:00:00Z",
+  "entities": {
+    "quests": [
+      {
+        "id": "quest:demo_awakening",
+        "title": "Awakening Protocol",
+        "path": "demo://quests/awakening",
+        "steps": [
+          { "id": "quest:demo_awakening:boot_system", "title": "Boot the guidance system." },
+          { "id": "quest:demo_awakening:reach_checkpoint", "title": "Reach the checkpoint." }
+        ]
+      },
+      {
+        "id": "quest:demo_supply_run",
+        "title": "Supply Run",
+        "path": "demo://quests/supply_run",
+        "steps": [
+          { "id": "quest:demo_supply_run:talk_to_vendor", "title": "Talk to the vendor drone." }
+        ]
+      }
+    ],
+    "events": [
+      {
+        "id": "event:demo_intro",
+        "title": "Intro Sequence",
+        "path": "demo://events/intro",
+        "steps": [
+          { "id": "event:demo_intro:wake", "title": "Wake" },
+          { "id": "event:demo_intro:meet_guide", "title": "Meet Guide" }
+        ]
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "dialogue:demo_greeting",
+        "path": "dialogues/intro.json"
+      },
+      {
+        "id": "dialogue:demo_vendor",
+        "path": "dialogues/vendor_choice.json"
+      }
+    ],
+    "flags": [
+      {
+        "id": "flag:demo.met_guide",
+        "label": "Met the guide NPC"
+      },
+      {
+        "id": "flag:demo.vendor_deal",
+        "label": "Accepted vendor trade"
+      }
+    ],
+    "enemies": [
+      { "id": "enemy:demo_drone", "name_en": "Patrol Drone", "name_ko": "초계 드론" },
+      { "id": "enemy:demo_sentinel", "name_en": "Rust Sentinel", "name_ko": "녹슨 보초" }
+    ],
+    "items": [
+      { "id": "item:101", "name": "Starter Toolkit" },
+      { "id": "item:102", "name": "Field Wrench" },
+      { "id": "item:1001", "name": "Nano Repair Canister" }
+    ]
+  },
+  "refs": [
+    { "from": "quest:demo_supply_run", "to": "item:102", "type": "rewards_item" },
+    { "from": "quest:demo_supply_run", "to": "item:1001", "type": "rewards_item" },
+    { "from": "event:demo_intro:wake", "to": "flag:demo.met_guide", "type": "sets_flag" },
+    { "from": "quest:demo_awakening", "to": "dialogue:demo_greeting", "type": "starts_dialogue" },
+    { "from": "dialogue:demo_vendor", "to": "flag:demo.vendor_deal", "type": "sets_flag" },
+    { "from": "quest:demo_supply_run", "to": "enemy:demo_drone", "type": "requires_flag" }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "flags": [
+    {
+      "id": "flag:demo.met_guide",
+      "label": "Met the guide NPC",
+      "type": "bool",
+      "default": false,
+      "scope": "global",
+      "notes": "Sample flag for portfolio demo."
+    },
+    {
+      "id": "flag:demo.vendor_deal",
+      "label": "Accepted vendor trade",
+      "type": "bool",
+      "default": false,
+      "scope": "event",
+      "owner_id": "event:demo_intro",
+      "notes": "Event-scoped sample flag."
+    }
+  ]
+}

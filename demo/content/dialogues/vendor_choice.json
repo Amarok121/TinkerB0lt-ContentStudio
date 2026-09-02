@@ -1,0 +1,22 @@
+{
+  "nodes": [
+    {
+      "name": "DialogueNode_0",
+      "type": "text",
+      "data": { "text": "Vendor drone: Need supplies?" }
+    },
+    {
+      "name": "DialogueNode_1",
+      "type": "choice",
+      "data": {
+        "choices": [
+          { "text": "Trade nano canister", "actions": [] },
+          { "text": "Walk away", "actions": [] }
+        ]
+      }
+    }
+  ],
+  "connections": [
+    { "from_node": "DialogueNode_0", "from_port": 0, "to_node": "DialogueNode_1", "to_port": 0 }
+  ]
+}

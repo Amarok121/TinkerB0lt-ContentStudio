@@ -1,0 +1,4 @@
+ID,Name,Texture,Type,Description,Stack_Amount,Cost,Drop_Chance,Min_Amount,Max_Amount
+101,Starter Toolkit,,misc,A basic toolkit for field repairs.,1,50,0,0,0
+102,Field Wrench,,equipment,A trusty wrench for demo quests.,1,100,5,1,1
+1001,Nano Repair Canister,,consumable,Restores a small amount of integrity.,8,25,10,1,2
