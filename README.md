@@ -14,7 +14,7 @@ Vue 3 **Content Studio** — 게임 콘텐츠(퀘스트·대화·아이템·플�
 
 ### 1. Entity browser · 엔티티 브라우저
 
-![Entity browser — event:prologue](docs/screenshots/entities-browser.png)
+![Entity browser — event:prologue](docs/screenshots/entities-browser.jpg)
 
 **한국어**
 
@@ -31,7 +31,7 @@ Manifest-backed entity browser: filter by type, inspect stable IDs and Godot sou
 
 ### 2. Item grouped editor · 아이템 그룹 에디터 + 로컬라이즈
 
-![Item grouped editor — localization EN/KO](docs/screenshots/item-grouped-editor.png)
+![Item grouped editor — localization EN/KO](docs/screenshots/item-grouped-editor.jpg)
 
 **한국어**
 
