@@ -8,7 +8,7 @@ import GraphView from "@/views/GraphView.vue";
 import FlagsView from "@/views/FlagsView.vue";
 
 export default createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: "/", component: OverviewView },
     { path: "/entities", component: EntityBrowserView },

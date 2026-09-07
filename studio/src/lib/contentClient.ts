@@ -1,6 +1,14 @@
 export const IS_DEMO_MODE = import.meta.env.VITE_DEMO_MODE === "true";
 
-const CONTENT_BASE = IS_DEMO_MODE ? "/content" : "/api/content";
+/** Vite `base` (e.g. `/TinkerB0lt-ContentStudio/` on GitHub Pages). */
+function withBase(path: string): string {
+  const base = import.meta.env.BASE_URL || "/";
+  const normalizedBase = base.endsWith("/") ? base : `${base}/`;
+  const normalizedPath = path.replace(/^\//, "");
+  return `${normalizedBase}${normalizedPath}`;
+}
+
+const CONTENT_BASE = IS_DEMO_MODE ? withBase("content") : "/api/content";
 
 /** Map monorepo CSV paths to bundled demo/content paths. */
 const DEMO_CSV_PATHS: Record<string, string> = {
@@ -115,10 +123,24 @@ export async function fetchCsv(relativePath: string): Promise<string> {
   return res.text();
 }
 
+export interface ImportHookResult {
+  kind: string;
+  ok: boolean;
+  message: string;
+  details?: string[];
+}
+
+export interface SaveContentResult {
+  ok: boolean;
+  path: string;
+  bytes?: number;
+  imports?: ImportHookResult[];
+}
+
 export async function saveContentFile(
   relativePath: WritableContentPath,
   content: string
-): Promise<void> {
+): Promise<SaveContentResult> {
   if (IS_DEMO_MODE) {
     throw new Error("Demo mode is read-only");
   }
@@ -131,6 +153,22 @@ export async function saveContentFile(
     const msg = await res.text();
     throw new Error(msg || `Save failed: ${relativePath}`);
   }
+  return res.json() as Promise<SaveContentResult>;
+}
+
+export function formatImportStatus(imports: ImportHookResult[] | undefined): string {
+  if (!imports?.length) {
+    return "Saved to repo.";
+  }
+  const lines = imports.map((imp) => {
+    const mark = imp.ok ? "✓" : "✗";
+    return `${mark} ${imp.message}`;
+  });
+  const failed = imports.some((imp) => !imp.ok);
+  const suffix = failed
+    ? " Fix GODOT_PATH / Python if imports failed."
+    : " Playtest in Godot (re-spawn enemies for stat changes).";
+  return `Saved. ${lines.join(" ")}${suffix}`;
 }
 
 export function parseCsv(text: string): string[][] {
